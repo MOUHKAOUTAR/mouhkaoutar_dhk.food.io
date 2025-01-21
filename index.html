@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page d'accueil</title>
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+    .modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.6);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    /* Conteneur de la modale */
+    .modal-container {
+        background: white;
+        width: 400px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        overflow: hidden;
+    }
+    
+    /* En-tête */
+    .modal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 20px;
+        background: #4caf50;
+        color: white;
+    }
+    
+    .modal-header h2 {
+        margin: 0;
+        font-size: 20px;
+    }
+    
+    .close-modal {
+        background: none;
+        border: none;
+        font-size: 20px;
+        color: white;
+        cursor: pointer;
+    }
+    
+    .close-modal:hover {
+        color: red;
+    }
+    
+    /* Corps de la modale */
+    .modal-body {
+        padding: 20px;
+        text-align: center;
+    }
+    
+    .input-group {
+        margin: 15px 0;
+        text-align: left;
+    }
+    
+    .input-group label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+    
+    .input-group input {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+    }
+    
+    .extra-options {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 15px;
+        font-size: 14px;
+    }
+    
+    .submit-btn {
+        width: 100%;
+        background: #00e732;
+        color: white;
+        border: none;
+        padding: 10px;
+        font-size: 16px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    
+    .submit-btn:hover {
+        background: #00e732;
+    }
+
+    
+        .modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: 400px;
+}
+
+.hidden {
+    display: none;
+}
+
+.close-btn {
+    float: right;
+    font-size: 20px;
+    cursor: pointer;
+}
+/*bouton d' admin*/
+.button-style {
+    display: inline-block;
+    padding: 3px 2px;
+    background-color:rgb(182, 184, 185); /* Couleur de fond (bleu) */
+    color: white; /* Couleur du texte */
+    text-decoration: none; /* Supprimer le soulignement */
+    border: none; /* Pas de bordure */
+    border-radius: 5px; /* Coins arrondis */
+    font-size: 16px; /* Taille du texte */
+    font-weight: bold; /* Texte en gras */
+    text-align: center; /* Centrer le texte */
+    cursor: pointer; /* Changer le curseur en "main" */
+    transition: background-color 0.3s ease; /* Animation pour hover */
+}
+
+.button-style:hover {
+    background-color:rgb(36, 179, 0); /* Couleur au survol */
+}
+
+.button-style:active {
+    background-color: rgb(36, 179, 0);; /* Couleur au clic */
+}
+
+       
+
+    </style>
+</head>
+<body>
+    <div class="background-image">
+        <header>
+            <nav class="navbar navbar-expand-lg navbar-dark">
+                <div class="container-fluid">
+                    <!-- Texte DHK_food avec l'étoile au-dessus -->
+                    <a class="navbar-brand" href="/">dHk_fOoD</a>
+
+                    <!-- Bouton pour mobile -->
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <!-- Contenu de la navigation -->
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+          <!-- #region --> <li class="nav-item">
+                             <a class="nav-link active" href="{{ route('home') }}">Accueil</a>
+                           </li>
+                            <li class="nav-item">
+                             <a class="nav-link" href="{{ route('menu') }}">Menu</a>
+                            </li>
+                             <li class="nav-item">
+                             <a class="nav-link" href="{{ route('restaurant') }}">Restaurant</a>
+                             </li>
+                             <li class="nav-item">
+                                
+                                <a  class="nav-link" href="{{ route('apropos') }}">À propos de nous</a>
+ 
+                            </li>
+                        </ul>
+
+                    </div>
+                <!-- Admin Section -->
+                <div class="admin-section">
+                    <img id="admin-img" src="assets/images/admin2.png" alt="Admin Icon">
+                    <a id="admin-btn" href="#" class="admin-link button-style">Admin</a>
+
+                </div>
+                <div id="role-selection" class="hidden">
+                    <div class="selection-header">
+                        <h3>Se connecter </h3>
+                        <button id="close-selection" class="close-btn">&times;</button>
+                    </div>
+                    <div class="selection-content">
+                        <div class="role-option" id="admin-option">
+                            <img src="assets/images/admin.png" alt="Admin Icon">
+                            <button>Administrateur</button>
+                        </div>
+                        <div class="role-option" id="manager-option">
+                            <img src="assets/images/administrateur.svg" alt="Manager Icon">
+                            <button>Gérant de Restaurant</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Modale pour Administrateur -->
+                <div id="admin-modal" class="modal hidden">
+                    <div class="modal-overlay">
+                        <div class="modal-container">
+                            <div class="modal-header">
+                                <h2>Se connecter - Administrateur</h2>
+                            <button class="close-modal" id="close-admin-modal">✖</button>
+                            </div>
+                            <div class="modal-body">
+                            <form action="{{ route('admin.login') }}#adminModal"  method="POST" >
+                            @if ($errors->has('login'))
+                             <div class="alert alert-danger">
+                             {{ $errors->first('login') }}
+                             </div>
+                            @endif
+
+                            @csrf
+                                    <div class="input-group">
+                                        <label for="admin-username"  >E-mail *</label>
+                                        <input type="email" id="admin-username" name="email" placeholder="Entrez votre email" required>
+                                       
+                                    </div>
+                                    <div class="input-group">
+                                        <label for="admin-password" >Mot de passe *</label>
+                                        <input type="password" id="admin-password"  name="password" placeholder="Entrez votre mot de passe" required>
+                                    </div>
+                                    <div class="extra-options">
+                                        <label>
+                                            <input type="checkbox">
+                                            Se souvenir de moi
+                                        </label>
+                                        <a href="#">Mot de passe oublié ?</a>
+                                    </div>
+                                    <button type="submit" class="submit-btn">Se connecter</button>
+                             </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+
+<!-- Modale pour Gérant -->
+<div id="manager-modal" class="modal hidden">
+    <div class="modal-overlay">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h2>Se connecter - Gérant</h2>
+                <button class="close-modal" id="close-manager-modal">✖</button>
+            </div>
+            <div class="modal-body">
+            <form action="{{ route('gerant.login') }}#gerantModal"  method="POST" >
+            @if ($errors->has('login'))
+                             <div class="alert alert-danger">
+                             {{ $errors->first('login') }}
+                             </div>
+                            @endif
+            
+            @csrf
+                    <div class="input-group">
+                        <label for="email">E-mail*</label>
+                        <input type="email" id="email" name="email" placeholder="Entrez votre email" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="manager-password">Mot de passe *</label>
+                        <input type="password" id="manager-password" name="password" placeholder="Entrez votre mot de passe" required>
+                    </div>
+                    <div class="extra-options">
+                        <label>
+                            <input type="checkbox">
+                            Se souvenir de moi
+                        </label>
+                        <a href="#">Mot de passe oublié ?</a>
+                    </div>
+                    <button type="submit" class="submit-btn">Se connecter</button>
+                </form>
+             </div>
+            </div>
+            </div>
+            </div>
+
+        </div>
+            </nav>
+        </header>
+        
+        <div class="text-overlay">
+                <p>𝔹𝕚𝕖𝕟𝕧𝕖𝕟𝕦𝕖 𝕔𝕙𝕖𝕫   <span>𝔻ℍ𝕂_𝔽𝕠𝕠𝕕</span>,</p>
+                <p>𝕠ù 𝕧𝕠𝕦𝕤 𝕡𝕠𝕦𝕧𝕖𝕫   <span>𝕔𝕠𝕞𝕞𝕒𝕟𝕕𝕖𝕣  </span> 𝕖𝕥  <span>𝕡𝕖𝕣𝕤𝕠𝕟𝕟𝕒𝕝𝕚𝕤𝕖𝕣 </span> votre 𝕧𝕠𝕥𝕣𝕖 𝕡𝕝𝕒𝕥,  </p>
+                <p> 𝕥𝕠𝕦𝕥 𝕖𝕟 <span>𝕧𝕚𝕤𝕦𝕒𝕝𝕚𝕤𝕒𝕟𝕥 𝕧𝕠𝕤 𝕔𝕒𝕝𝕠𝕣𝕚𝕖𝕤</span> !</p>
+            </div>
+       
+    </div>
+
+    <section class="how-it-works">
+        <h2>Comment ça marche</h2>
+        <p>Commandez en 3 étapes sans aucun frais supplémentaire</p>
+        <div class="steps">
+            <div class="step">
+                <img src="assets/images/home_step1.png" alt="Localisez-vous" />
+                <h3>Localisez-vous</h3>
+                <p>Choisissez votre Restaurant</p>
+            </div>
+            <div class="step">
+                <img src="assets/images/home_step2.png" alt="Choisissez votre plat" />
+                <h3>Choisissez votre plat</h3>
+                <p>Sélectionnez le plat qui vous convient</p>
+            </div>
+            <div class="step">
+                <img src="assets/images/home_step3.png" alt="Passez votre commande" />
+                <h3>Passez votre commande</h3>
+                <p>Commandez votre repas en ligne</p>
+            </div>
+        </div>
+    </section>
+     <!--  Commander  -->
+     <div class="order-section">
+       
+        <h2>Commandez dès maintenant !</h2>
+        <p style="
+    border-radius: 10px; /* Arrondi des bords */
+    background: rgba(255, 255, 255, 0.8); /* Couleur blanche avec transparence */
+     width: 40%; /* Ajustez la largeur (exemple : 60% de la page) */
+    margin: 0 auto; /* Centre le conteneur horizontalement */
+    box-shadow: -5px 0 10px rgba(0, 0, 0, 0.1); /* Réduction de l'ombre */
+    backdrop-filter: blur(5px); /* Flou subtil */
+    color: black; /* Texte en noir */
+    padding: 10px; /* Réduction de l'espacement */
+    font-weight: bold;
+">
+    Profitez de nos offres spéciales et passez votre commande en ligne.
+</p>
+
+        <button class="order-button"><a href="{{ route('menu') }}">Commander</a></button>
+    
+        <!-- Carrousel en arrière-plan -->
+        <div class="carousel-background">
+            <div class="carousel-slide">
+                <img src="assets/images/plat1.jpg" alt="Plat 1">
+              
+                <img src="assets/images/plat3.jpg" alt="Plat 3">
+                <img src="assets/images/plat4.jpg" alt="Plat 4">
+                <img src="assets/images/plat7.jpg" alt="Plat 5">
+                <img src="assets/images/plat6.jpg" alt="Plat 6">
+              
+                  <img src="assets/images/plat1.jpg" alt="Plat 1 Clone">
+                  <img src="assets/images/plat2.jpg" alt="Plat 2 Clone">
+                  <img src="assets/images/plat3.jpg" alt="Plat 3 Clone">
+                  <img src="assets/images/plat4.jpg" alt="Plat 4 Clone">
+                  <img src="assets/images/plat7.jpg" alt="Plat 5 Clone">
+                  <img src="assets/images/plat6.jpg" alt="Plat 6 Clone">
+                  <img src="assets/images/jus1.jpg" alt="jus2">
+                  <img src="assets/images/jus2.jpg" alt="jus1">
+                  
+                
+                 
+            </div>
+        </div>
+   </div>
+    
+    
+    
+    <section class="partner-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <img src="assets/images/partner.jpg" alt="Devenir partenaire" class="img-fluid">
+                </div>
+                <div class="col-md-6 text-center">
+                    <h2>Vous êtes un Restaurant  ?</h2>
+                    <p >Nous avons la solution qui vous convient </p>
+                    <a href="{{ route('partenaire') }}" class="btn btn-success" >Devenir partenaire</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <footer style="background-color: #f9f9f9; padding: 20px; text-align: center; font-family: Arial, sans-serif;">
+        <div style="display: flex; justify-content: space-around; align-items: flex-start; flex-wrap: wrap;">
+    
+            <!-- Section Paiement Sécurisé -->
+            <div>
+                <h6 style="font-weight: bold; margin-bottom: 10px;">Paiement sécurisé</h6>
+                <img src="assets/images/VISA.jpeg" alt="Visa" style="margin-right: 5px; width: 50px; height: auto;">
+                <img src="assets/images/mastercard.png" alt="MasterCard" style="margin-right: 5px; width: 50px; height: auto;">
+                <img src="assets/images/cmi.jpeg" alt="CMI" style="margin-right: 5px; width: 50px; height: auto;">
+            </div>
+            
+    
+            <!-- Section Villes -->
+            <div>
+                <h6 style="font-weight: bold; margin-bottom: 10px;">Villes desservies</h6>
+                <ul style="list-style: none; padding: 0; font-size: 14px; line-height: 1.8;">
+                    <li>Casablanca</li>
+                    <li>Rabat</li>
+                    <li>Témara/Harhoura</li>
+                </ul>
+            </div>
+    
+            <!-- Section Contact -->
+            <div>
+                <h6 style="font-weight: bold; margin-bottom: 10px;">Contact</h6>
+                <p style="font-size: 14px;">📧 <a href="mailto:contact@dhk.food.ma" style="color: #333;">contact@Dhk.food.ma</a></p>
+            </div>
+    
+            <!-- Section En savoir plus -->
+            <div>
+                <h6 style="font-weight: bold; margin-bottom: 10px;">En savoir plus</h6>
+                <ul style="list-style: none; padding: 0; font-size: 14px;">
+                <li><a href="{{ route('apropos') }}" style="color: #333;">Conditions générales</a></li>
+                <li><a href="{{ route('connexion') }}" style="color: #333;">Se connecter</a></li>
+                </ul>
+                
+            </div>
+    
+            <!-- Section Newsletter -->
+            <div>
+                <h6 style="font-weight: bold; margin-bottom: 10px;">Newsletter</h6>
+                <form>
+                    <input type="email" placeholder="Adresse e-mail" style="padding: 5px; font-size: 14px;">
+                    <button type="submit" style="padding: 5px 10px; background-color: #4CAF50; color: white; border: none; cursor: pointer;">✔️</button>
+                </form>
+                <p style="font-size: 12px; margin-top: 10px;">Inscrivez-vous à notre newsletter et recevez<br>en exclusivité nos dernières offres et nouveautés.</p>
+            </div>
+        </div>
+        <hr style="width:90%; margin: 20px auto;">
+        <!-- Footer bottom -->
+        <div style="margin-top: 20px; font-size: 12px; color: #aaa;">
+            <p>© DHK_Food.ma 2025</p>
+            <a href="#" style="margin-right: 10px; display: inline-block;">
+                <img src="assets/images/facebook.png" alt="Facebook" style="width: 20px; height: 20px;">
+            </a>
+            <a href="#" style="display: inline-block;">
+                <img src="{{ asset('assets/images/instagram (1).png')}}" alt="Instagram" style="width: 20px; height: 20px;">
+            </a>
+        </div>
+        
+    </footer>
+     
+    <script src="{{ asset('js/main.js') }}"></script>
+    
+
+   
+    
+</body>
+</html>

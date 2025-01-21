@@ -1,0 +1,412 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.background-image {
+    background-image: url('https://i.postimg.cc/qq96kkdP/banner-home3.jpg');/*emplace par ton image */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    height: 95vh;
+    
+}
+
+.navbar {
+    background-color: rgba(104, 99, 99, 0.7) !important;
+    font-weight: bold;
+    position: fixed;
+    height: auto;
+    top: 0;
+    width: 100%;
+    z-index: 1000; /* S'assure que la barre est au-dessus du contenu */
+
+    transition: background-color 0.3s ease; /* Animation pour un changement fluide */
+}
+.navbar.scrolled {
+background-color: #00e732 !important; /* Couleur verte lorsqu'on scrolle */
+  }
+
+/* Logo DHK_food */
+.navbar-brand {
+    font-size: 1.4rem;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    display: block;
+    margin: auto;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+   
+}
+
+.navbar-brand::before {
+    content: '★';
+    display: block;
+    color: red;
+    font-size: 24px;
+    text-align: center;
+}
+
+/* Espacement entre les liens */
+.navbar-nav {
+    margin-left: auto;
+    margin-right: auto;
+    gap: 30px; /* Espace entre les liens */
+}
+
+.navbar-nav .nav-link {
+    color: white !important;
+    position: relative;
+}
+
+.navbar-nav .nav-link.active {
+    color: #00e732 !important; /* Couleur pour l'option active */
+    font-weight: bold;
+}
+
+.navbar-nav .nav-link.active::after {
+    content: '★'; /* Ajoute une étoile en bas */
+    position: absolute;
+    bottom: -8px; /* Ajuste la position de l'étoile */
+    left: 50%;
+    transform: translateX(-50%);
+    color: red; /* Couleur de l'étoile */
+    font-size: 14px;
+}
+
+/* Section Admin */
+.admin-section {
+    position: absolute;
+    right: 20px; /* Aligne à droite */
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Espace entre l'image et le texte */
+    border-bottom: #00e732;
+    flex-direction: column; /* Positionner les éléments en colonne */
+    align-items: center; /* Centrer les éléments horizontalement */
+}
+
+.admin-section img {
+    height: 30px;
+    width: 30px;
+    border-radius: 50%; /* Cercle pour l'image */
+}
+.admin-section img:hover {
+    height: 30px;
+    width: 30px;
+    border-radius: 50%; 
+    cursor: pointer; /* Changer le curseur pour l'image aussi */
+    transform: scale(1.1); /* Zoomer légèrement sur l'image au survol */
+    transition: transform 0.3s ease; /* Animation douce pour l'effet de zoom */
+}
+
+.admin-section .admin-link  {
+    color: white;
+    font-size: 0.9rem;
+    font-weight: bold;
+    text-decoration: none;
+}
+.admin-section .admin-link:hover {
+    color: #00e732; /* Changer la couleur du texte au survol */
+    font-size: 0.9rem;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer; /* Changer le curseur pour indiquer que c'est cliquable */
+}
+
+
+.text-overlay {
+position: absolute;
+top: 29%; /* Ajustez ce pourcentage pour changer la hauteur */
+left: 50%;
+transform: translateX(-50%);
+text-align: center;
+color: white;
+font-size: 2rem;
+font-weight: bold;
+text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+width: 80%;
+}
+
+.text-overlay span {
+color: #00e732; /* Couleur différente pour mettre en valeur certains mots */
+}
+/* style de how our solution works*/
+.how-it-works {
+background-color: #f9f9f9;
+padding: 50px 20px;
+text-align: center;
+color: #333;
+}
+
+.how-it-works h2 {
+font-size: 3rem;
+color: #333;
+margin-bottom: 10px;
+}
+
+.how-it-works p {
+font-size: 1.4rem;
+color: #666;
+margin-bottom: 30px;
+}
+
+.steps {
+display: flex;
+justify-content: center;
+gap: 200px;
+flex-wrap: wrap;
+margin: 0 80px;
+}
+
+.step {
+max-width: 250px;
+text-align: center;
+}
+
+.step img {
+width: 150px;
+height: 150px;
+margin-bottom: 15px;
+}
+
+.step h3 {
+font-size: 1.2rem;
+color: #070808;
+margin-bottom: 10px;
+}
+
+.step p {
+font-size: 0.9rem;
+color: #666;
+}
+/*la section de partenaire */
+.partner-section {
+background-color: #f8f9fa; /* Couleur de fond douce */
+padding: 50px 0;
+}
+
+.partner-section img {
+max-width: 100%;
+border-radius: 10px; /* Arrondir les coins de l'image */
+}
+
+.partner-section h2 {
+font-size: 2rem;
+font-weight: bold;
+color: #333;
+margin-bottom: 20px;
+}
+
+.partner-section p {
+font-size: 1.2rem;
+color: #555;
+margin-bottom: 30px;
+}
+
+.partner-section .btn {
+font-size: 1rem;
+padding: 10px 20px;
+border-radius: 5px;
+text-transform: uppercase;
+font-weight: bold;
+background-color:  #00e732 ;           /*dhjdhdjddh*/
+}
+
+
+
+
+
+
+/* Style de la section Commander */
+.order-section {
+position: relative;
+z-index: 1; /* Garde le texte et le bouton au premier plan */
+text-align: center;
+padding: 50px 0;
+color: white;
+background: rgba(114, 97, 97, 0.7); /* Fond semi-transparent pour la lisibilité */
+}
+
+
+/* Carrousel spécifique à la section Commander */
+.carousel-background {
+position: absolute; /* Positionné en arrière-plan */
+top: 0;
+left: 0;
+width: 100%; /* Largeur de la section */
+height: 100%; /* Hauteur de la section */
+overflow: hidden; /* Cache l'excédent des images */
+z-index: -1; /* Met le carrousel derrière le texte et le bouton */
+
+}
+
+/* Contenu du carrousel (les images) */
+.carousel-slide {
+display: flex;
+width: 100%; /* Largeur totale : 2 fois la largeur des images originales */
+animation: slide 20s linear infinite; /* Linear pour éviter les "pauses" */
+height: 100%;
+object-fit: cover;
+}
+
+
+
+
+/* Animation pour faire défiler les images */
+@keyframes slide {
+0% {
+transform: translateX(0);
+}
+100% {
+transform: translateX(-100%); /* Déplace sur la longueur de toutes les images originales */
+}
+}
+
+
+
+/* Style du bouton */
+.order-button  {
+background-color: #00e732;
+margin-top: 10px;
+font-weight: bold;
+color: white;
+font-size: 16px;
+padding: 15px 30px;
+border: none;
+border-radius: 30px;
+cursor: pointer;
+transition: transform 0.3s ease, background-color 0.3s ease;
+}
+.order-button a {
+    text-decoration: none; /* Supprime le soulignement */
+    color: inherit; /* Hérite de la couleur du bouton ou du parent */
+}
+
+
+.order-button:hover {
+background-color: #00e732;
+transform: scale(1.1);
+}
+
+.order-button:active {
+background-color: #00e732;
+transform: scale(0.95);
+}
+/* Masquer la fenêtre par défaut */
+.hidden {
+    display: none;
+}
+
+/* Fenêtre de sélection */
+#role-selection {
+    
+    position: fixed;
+    top: 20%;
+    left: 30%;
+    width: 40%;
+    background-color: rgb(255, 255, 255);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    padding: 20px;
+    text-align: center;
+    height: 50%;
+}
+
+/* En-tête */
+.selection-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #ddd;
+    margin-bottom: 20px;
+
+    
+}
+.selection-header h3{
+    margin-left: 150px;
+    color: #0f1610;
+}
+
+/* Bouton pour fermer */
+/* Style de base pour le bouton */
+.close-btn {
+    font-size: 3rem; 
+  
+    color: #333; /* Couleur du symbole */
+    background-color: transparent; /* Pas de couleur de fond */
+    border: 2px solid #ccc; /* Bordure fine et élégante */
+    border-radius: 8px; /* Coins légèrement arrondis */
+    width: 40px;
+    height: 40px;
+    cursor: pointer; /* Curseur interactif */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    transition: all 0.3s ease; /* Effet de transition fluide */
+}
+
+/* Effet au survol */
+.close-btn:hover {
+    background-color: #f8f9fa; /* Fond clair au survol */
+    border-color: #555; /* Changement de couleur de la bordure */
+    color: #f7443e; /* Couleur rouge douce pour indiquer la fermeture */
+    transform: rotate(90deg); /* Rotation subtile au survol */
+}
+
+/* Effet au clic */
+.close-btn:active {
+    background-color: #f5c6cb; /* Fond plus marqué pour un feedback visuel */
+    border-color: #e04d48; /* Bordure rouge au clic */
+    transform: scale(0.9); /* Réduction légère pour simuler une pression */
+}
+
+/* Contenu des rôles */
+.selection-content {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+/* Options de rôle */
+.role-option {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.role-option img {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 10px;
+}
+
+.role-option button {
+    font-size: 1.2rem;
+    color: #333;
+    background-color: #f2f2f2;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px 15px;
+    cursor: pointer;
+    margin: 5px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.role-option button:hover {
+    background-color: #ddd;
+    transform: scale(1.05);
+}
+
+.role-option button:active {
+    background-color: #ccc;
+}
+
